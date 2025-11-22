@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/agentic-portfolio/static/css/main.6ac5e865.css",
+    "main.js": "/agentic-portfolio/static/js/main.31ab314e.js",
+    "static/js/453.28f80cfd.chunk.js": "/agentic-portfolio/static/js/453.28f80cfd.chunk.js",
+    "index.html": "/agentic-portfolio/index.html",
+    "main.6ac5e865.css.map": "/agentic-portfolio/static/css/main.6ac5e865.css.map",
+    "main.31ab314e.js.map": "/agentic-portfolio/static/js/main.31ab314e.js.map",
+    "453.28f80cfd.chunk.js.map": "/agentic-portfolio/static/js/453.28f80cfd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6ac5e865.css",
+    "static/js/main.31ab314e.js"
+  ]
+}
