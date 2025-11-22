@@ -1,9 +1,11 @@
-// FULL UPDATED APP.JSX — FULLY RESPONSIVE NAVBAR (Dropdown Mobile Menu)
-// All sections restored and working perfectly.
-
+// FULL UPDATED APP.JSX — RESPONSIVE NAVBAR + REACT ICONS + SIDEBAR ROBOT ICON
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TypingText from "./components/TypingText";
+
+// ⭐ React Icons
+import { MdEmail } from "react-icons/md";
+import { FaPhone, FaGithub, FaLinkedin, FaRobot } from "react-icons/fa";
 
 // --------------------- DATA -------------------------
 const sections = ["Hero", "About", "Experience", "Projects", "Skills", "Contact"];
@@ -55,23 +57,22 @@ const sectionVariants = {
 // --------------------- APP -------------------------
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // MOBILE MENU
+  const [menuOpen, setMenuOpen] = useState(false);
   const [current, setCurrent] = useState(sections[0]);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showTopBtn, setShowTopBtn] = useState(false);
 
-  // Detect theme
+  // Detect system theme
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     setDarkMode(prefersDark);
   }, []);
 
-  // Apply dark mode
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
-  // Section Scroll Logic
+  // Scroll logic
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -101,15 +102,13 @@ export default function App() {
   return (
     <div className="min-h-screen font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 snap-y snap-mandatory overflow-y-scroll">
 
-      {/* Scroll Progress */}
+      {/* Progress Bar */}
       <div className="fixed top-0 left-0 h-1 bg-purple-500 z-50"
         style={{ width: `${scrollProgress * 100}%` }} />
 
-      {/* NAVBAR — RESPONSIVE */}
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-gray-50 dark:bg-gray-900 shadow-md">
         <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
-
-          {/* Brand */}
           <div className="text-xl font-bold text-purple-600">Harsh Singh</div>
 
           {/* Desktop Menu */}
@@ -118,7 +117,9 @@ export default function App() {
               <li key={sec}>
                 <a
                   href={`#${sec.toLowerCase()}`}
-                  className={`hover:text-purple-600 dark:hover:text-purple-400 ${current === sec ? "font-bold underline" : ""}`}
+                  className={`hover:text-purple-600 dark:hover:text-purple-400 ${
+                    current === sec ? "font-bold underline" : ""
+                  }`}
                 >
                   {sec}
                 </a>
@@ -126,7 +127,7 @@ export default function App() {
             ))}
           </ul>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-3xl focus:outline-none"
@@ -151,7 +152,7 @@ export default function App() {
                     className={`block py-2 text-lg hover:text-purple-600 dark:hover:text-purple-400 ${
                       current === sec ? "font-bold underline" : ""
                     }`}
-                    onClick={() => setMenuOpen(false)} // close menu on click
+                    onClick={() => setMenuOpen(false)}
                   >
                     {sec}
                   </a>
@@ -194,18 +195,23 @@ export default function App() {
         initial="hidden"
         whileInView="visible"
         variants={sectionVariants}
-        viewport={{ once: true }}
         className="min-h-screen flex flex-col justify-center items-center text-center px-6 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
       >
         <img
           src="https://media.licdn.com/dms/image/v2/D5603AQEcK7ZuoUxlnA/profile-displayphoto-shrink_400_400/B56ZSAbnqNGoAg-/0/1737321512562?e=1765411200&v=beta&t=BJS1L7NaR7rH33t1BQ_tSUmIcqRUjyqApo3D0hgaXXw"
           alt="Harsh Singh"
-          className="w-36 h-36 rounded-full shadow-xl border-4 border-white mb-6 object-cover
-          ring-4 ring-purple-400 ring-offset-2 ring-offset-transparent animate-pulse"
+          className="w-36 h-36 rounded-full shadow-xl border-4 border-white mb-6 object-cover ring-4 ring-purple-400 animate-pulse"
         />
-        <h1 className="text-5xl font-bold mb-4">🙂 <TypingText text="Hello, I'm Harsh Singh" speed={80} /></h1>
-        <p className="text-xl mb-6"><TypingText text="Senior Data Engineer | Building Scalable Data Pipelines | Python | Spark | AWS | Airflow | Dagster | Snowflake | Kafka | Data Warehousing | NIT Agartala ’23" speed={40} /></p>
-        <a href="#contact" className="px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-200">Contact Me</a>
+        <h1 className="text-5xl font-bold mb-4">
+          🙂 <TypingText text="Hello, I'm Harsh Singh" speed={80} />
+        </h1>
+        <p className="text-xl mb-6">
+          <TypingText text="Senior Data Engineer | Building Scalable Data Pipelines | Python | Spark | AWS | Airflow | Dagster | Snowflake | Kafka | Data Warehousing | NIT Agartala ’23" speed={40} />
+        </p>
+
+        <a href="#contact" className="px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-200">
+          Contact Me
+        </a>
       </motion.section>
 
       {/* ABOUT */}
@@ -218,10 +224,8 @@ export default function App() {
       >
         <h2 className="text-3xl font-bold mb-6 border-b-2 border-purple-500 inline-block">About Me</h2>
         <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          Data Engineer with 2.5 years at Tata Elxsi, experienced in designing large-scale data pipelines, ETL
-          workflows, and scalable cloud architectures. Skilled in AWS, Snowflake, PySpark, Dagster, and building
-          automation pipelines. Contributed to MERN full-stack development when needed. Known for problem-solving,
-          reliability, teamwork, and delivering production-ready systems.
+          Data Engineer with 2.5 years at Tata Elxsi, experienced in designing large-scale data pipelines, ETL workflows,
+          and cloud architectures. Skilled in AWS, Snowflake, PySpark, Dagster.
           <br /><br />
           <strong>Achievements:</strong> Expert-rated coder (Codeforces), Rising Star Award, Project Excellence Award,
           2× Extra Mile Award.
@@ -239,26 +243,23 @@ export default function App() {
         <h2 className="text-3xl font-bold mb-6 border-b-2 border-purple-500 inline-block">Experience</h2>
 
         <div className="space-y-10">
-
-          {/* Tata Elxsi – Data Engineer */}
           <div>
             <h3 className="text-2xl font-bold">Tata Elxsi — Data Engineer</h3>
             <p className="text-gray-500 mb-2">June 2023 – May 2025 • Bengaluru</p>
             <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-              <li>Designed and developed TEDAX, Tata Elxsi’s internal analytics platform using React.js, PySpark & FastAPI.</li>
-              <li>Implemented LLM-powered SCPI assistant for Keysight using Streamlit + RAG + finetuned models.</li>
-              <li>Delivered global Olympics engagement analytics pipeline supporting real-time sentiment insights.</li>
-              <li>Developed Air India’s real-time customer review analytics system using Elasticsearch & streaming workflows.</li>
+              <li>Designed and developed TEDAX analytics platform.</li>
+              <li>Implemented LLM-powered SCPI assistant for Keysight.</li>
+              <li>Delivered global Olympics sentiment analytics pipeline.</li>
+              <li>Developed Air India’s real-time customer review analytics.</li>
             </ul>
           </div>
 
-          {/* Tata Elxsi – Senior Data Engineer */}
           <div>
             <h3 className="text-2xl font-bold">Tata Elxsi — Senior Data Engineer</h3>
             <p className="text-gray-500 mb-2">June 2025 – Present • Bengaluru</p>
             <ul className="list-disc ml-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-              <li>Architected large-scale EV telematics pipelines for Tata Motors using PySpark, Kafka, EMR achieving &lt;3.8 sec latency.</li>
-              <li>Building Caterpillar enterprise systems: Delta (Python registry) & Xplore (workflow orchestration + GenAI).</li>
+              <li>Architected EV telematics systems.</li>
+              <li>Building enterprise systems: Delta (Python registry) & Xplore (Workflow + GenAI).</li>
             </ul>
           </div>
         </div>
@@ -316,7 +317,7 @@ export default function App() {
         </div>
       </motion.section>
 
-      {/* CONTACT */}
+      {/* CONTACT — FINAL WITH React Icons */}
       <motion.section
         id="contact"
         initial="hidden"
@@ -326,19 +327,58 @@ export default function App() {
       >
         <h2 className="text-3xl font-bold mb-6 border-b-2 border-purple-500 inline-block">Contact</h2>
 
-        <p className="mb-2 text-lg">📩 <strong>Email:</strong> hgh9harsh@gmail.com</p>
-        <p className="mb-2 text-lg">📞 <strong>Phone:</strong> +91 8862862866</p>
-        <p className="mb-2 text-lg">🔗 <strong>GitHub:</strong> <a href="https://github.com/divineciphercells" target="_blank" rel="noopener noreferrer" className="text-purple-600 underline">github.com/divineciphercells</a></p>
-        <p className="text-lg">🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/harsh-singh" target="_blank" rel="noopener noreferrer" className="text-purple-600 underline">linkedin.com/in/harsh-singh</a></p>
+        {/* Email */}
+        <p className="mb-2 text-lg flex justify-center items-center gap-2">
+          <MdEmail className="text-2xl text-red-500" />
+          <strong>Email:</strong>
+          <span>hgh9harsh@gmail.com</span>
+        </p>
+
+        {/* Phone */}
+        <p className="mb-2 text-lg flex justify-center items-center gap-2">
+          <FaPhone className="text-2xl text-green-600" />
+          <strong>Phone:</strong>
+          <span>+91 8862862866</span>
+        </p>
+
+        {/* GitHub */}
+        <p className="mb-2 text-lg flex justify-center items-center gap-2">
+          <FaGithub className="text-2xl text-purple-600" />
+          <strong>GitHub:</strong>
+          <a
+            href="https://github.com/Harsh-Singh-619"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-600 underline"
+          >
+            github.com/Harsh-Singh-619
+          </a>
+        </p>
+
+        {/* LinkedIn */}
+        <p className="text-lg flex justify-center items-center gap-2">
+          <FaLinkedin className="text-2xl text-blue-600" />
+          <strong>LinkedIn:</strong>
+          <a
+            href="https://www.linkedin.com/in/harsh-singh-943835216/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-purple-600 underline"
+          >
+            linkedin.com/in/harsh-singh-943835216
+          </a>
+        </p>
       </motion.section>
 
-      {/* AGENTIC ASSISTANT */}
-      <div className="fixed bottom-6 left-6 w-64 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-4 text-sm border border-gray-200 dark:border-gray-700">
-        <div className="text-lg">🤖</div>
-        <strong>You’re viewing: {current}</strong>
-        <p className="mt-1 text-gray-600 dark:text-gray-300">
-          {nextSection ? <>Next up: <strong>{nextSection}</strong></> : "You reached the end — nice!"}
-        </p>
+      {/* FLOATING SIDEBAR — UPDATED WITH FaRobot 🤖 */}
+      <div className="fixed bottom-6 left-6 w-64 bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-4 text-sm border border-gray-200 dark:border-gray-700 flex gap-3 items-start">
+        <FaRobot className="text-3xl text-purple-600" />
+        <div>
+          <strong>You’re viewing: {current}</strong>
+          <p className="mt-1 text-gray-600 dark:text-gray-300">
+            {nextSection ? <>Next up: <strong>{nextSection}</strong></> : "You reached the end — nice!"}
+          </p>
+        </div>
       </div>
 
     </div>
