@@ -1,12 +1,12 @@
-// FULL UPDATED APP.JSX — ALL SECTIONS RESTORED (Hero, About, Experience, Projects, Skills, Contact)
-// Resume data fully integrated
+// FULL UPDATED APP.JSX — FULLY RESPONSIVE NAVBAR (Dropdown Mobile Menu)
+// All sections restored and working perfectly.
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TypingText from "./components/TypingText";
 
 // --------------------- DATA -------------------------
-const sections = ["Hero", "About", "Experience", "Projects", "Skills", "Contact"]; 
+const sections = ["Hero", "About", "Experience", "Projects", "Skills", "Contact"];
 
 const skills = [
   "Python", "PySpark", "Airflow", "Dagster", "FastAPI", "React",
@@ -55,11 +55,10 @@ const sectionVariants = {
 // --------------------- APP -------------------------
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // MOBILE MENU
   const [current, setCurrent] = useState(sections[0]);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showTopBtn, setShowTopBtn] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   // Detect theme
   useEffect(() => {
@@ -103,14 +102,18 @@ export default function App() {
     <div className="min-h-screen font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 snap-y snap-mandatory overflow-y-scroll">
 
       {/* Scroll Progress */}
-      <div className="fixed top-0 left-0 h-1 bg-purple-500 z-50" style={{ width: `${scrollProgress * 100}%` }} />
+      <div className="fixed top-0 left-0 h-1 bg-purple-500 z-50"
+        style={{ width: `${scrollProgress * 100}%` }} />
 
-      {/* NAVBAR */}
+      {/* NAVBAR — RESPONSIVE */}
       <nav className="fixed top-0 w-full z-50 bg-gray-50 dark:bg-gray-900 shadow-md">
         <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+
+          {/* Brand */}
           <div className="text-xl font-bold text-purple-600">Harsh Singh</div>
 
-          <ul className="flex space-x-6">
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-6">
             {sections.slice(1).map((sec) => (
               <li key={sec}>
                 <a
@@ -122,7 +125,41 @@ export default function App() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-3xl focus:outline-none"
+          >
+            ☰
+          </button>
         </div>
+
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.ul
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden bg-gray-100 dark:bg-gray-800 px-6 pb-4 space-y-3 shadow-inner"
+            >
+              {sections.slice(1).map((sec) => (
+                <li key={sec}>
+                  <a
+                    href={`#${sec.toLowerCase()}`}
+                    className={`block py-2 text-lg hover:text-purple-600 dark:hover:text-purple-400 ${
+                      current === sec ? "font-bold underline" : ""
+                    }`}
+                    onClick={() => setMenuOpen(false)} // close menu on click
+                  >
+                    {sec}
+                  </a>
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* DARK MODE BUTTON */}
@@ -161,13 +198,13 @@ export default function App() {
         className="min-h-screen flex flex-col justify-center items-center text-center px-6 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
       >
         <img
-          src="https://media.licdn.com/dms/image/v2/D5603AQEcK7ZuoUxlnA/profile-displayphoto-shrink_400_400/B56ZSAbnqNGoAg-/0/1737321512562?e=1765411200&v=beta&t=BJS1L7NaR7rH33t1BQ_tSUmIcqRUjyqApo3D0hgaXXw" 
+          src="https://media.licdn.com/dms/image/v2/D5603AQEcK7ZuoUxlnA/profile-displayphoto-shrink_400_400/B56ZSAbnqNGoAg-/0/1737321512562?e=1765411200&v=beta&t=BJS1L7NaR7rH33t1BQ_tSUmIcqRUjyqApo3D0hgaXXw"
           alt="Harsh Singh"
           className="w-36 h-36 rounded-full shadow-xl border-4 border-white mb-6 object-cover
           ring-4 ring-purple-400 ring-offset-2 ring-offset-transparent animate-pulse"
         />
         <h1 className="text-5xl font-bold mb-4">🙂 <TypingText text="Hello, I'm Harsh Singh" speed={80} /></h1>
-        <p className="text-xl mb-6"><TypingText text="Senior Data Engineer | Building Scalable Data Pipelines | Python | Spark | AWS | Airflow | Dagster | Snowflake | Kafka | Data Warehousing | NIT Agartala  ’23" speed={40} /></p>
+        <p className="text-xl mb-6"><TypingText text="Senior Data Engineer | Building Scalable Data Pipelines | Python | Spark | AWS | Airflow | Dagster | Snowflake | Kafka | Data Warehousing | NIT Agartala ’23" speed={40} /></p>
         <a href="#contact" className="px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-200">Contact Me</a>
       </motion.section>
 
@@ -192,7 +229,6 @@ export default function App() {
       </motion.section>
 
       {/* EXPERIENCE */}
-      {/* EXPERIENCE CONTINUED */}
       <motion.section
         id="experience"
         initial="hidden"
