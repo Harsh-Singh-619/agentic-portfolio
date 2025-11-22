@@ -167,7 +167,7 @@ export default function App() {
           ring-4 ring-purple-400 ring-offset-2 ring-offset-transparent animate-pulse"
         />
         <h1 className="text-5xl font-bold mb-4">🙂 <TypingText text="Hello, I'm Harsh Singh" speed={80} /></h1>
-        <p className="text-xl mb-6"><TypingText text="Data Engineer • 2.5+ Years • Tata Elxsi" speed={40} /></p>
+        <p className="text-xl mb-6"><TypingText text="Senior Data Engineer | Building Scalable Data Pipelines | Python | Spark | AWS | Airflow | Dagster | Snowflake | Kafka | Data Warehousing | NIT Agartala  ’23" speed={40} /></p>
         <a href="#contact" className="px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-purple-200">Contact Me</a>
       </motion.section>
 
