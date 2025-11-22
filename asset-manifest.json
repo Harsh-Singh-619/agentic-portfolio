@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/agentic-portfolio/static/css/main.21b40afc.css",
-    "main.js": "/agentic-portfolio/static/js/main.ac5e6f0f.js",
+    "main.css": "/agentic-portfolio/static/css/main.9e63c43c.css",
+    "main.js": "/agentic-portfolio/static/js/main.5c7f6270.js",
     "static/js/453.28f80cfd.chunk.js": "/agentic-portfolio/static/js/453.28f80cfd.chunk.js",
     "index.html": "/agentic-portfolio/index.html",
-    "main.21b40afc.css.map": "/agentic-portfolio/static/css/main.21b40afc.css.map",
-    "main.ac5e6f0f.js.map": "/agentic-portfolio/static/js/main.ac5e6f0f.js.map",
+    "main.9e63c43c.css.map": "/agentic-portfolio/static/css/main.9e63c43c.css.map",
+    "main.5c7f6270.js.map": "/agentic-portfolio/static/js/main.5c7f6270.js.map",
     "453.28f80cfd.chunk.js.map": "/agentic-portfolio/static/js/453.28f80cfd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21b40afc.css",
-    "static/js/main.ac5e6f0f.js"
+    "static/css/main.9e63c43c.css",
+    "static/js/main.5c7f6270.js"
   ]
 }
